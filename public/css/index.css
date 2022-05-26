@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+.split-screen{
+    display : flex;
+    flex-direction : row;
+}
+*, body, html{
+    padding :0;
+    margin : 0;
+    color : white;
+    font-family: 'Poppins', sans-serif;
+}
+
+.left, .right{
+    display: flex;
+}
+.left {
+    order :1;
+    width: 29%;
+}
+.right {
+    order : 2;
+    width : 70%;
+}
+
+@media only screen and (max-width : 640px) {
+    .split-screen{
+        flex-direction: column;
+    }
+    .left {
+        font-size :smaller;
+        width : 100%;
+        margin-bottom : 20px;
+    }
+    .right {
+        width: 100%;
+    }
+    .panel {
+        width:100%;
+        height: 100%;
+    }
+    .identity {
+        margin-right: 50px;
+    }
+    .latlong {
+        margin-right: 50px;
+        margin-left:30px;
+    }
+    .tracks {
+        margin-left:0px;
+        text-align: center;
+        margin-left : 10px
+    }
+    .tracks button {
+        width : 100px
+    }
+    .maprouter {
+        height: 650px;
+    }
+    .gmap_canvas {
+        height: 650px;
+    }
+}

@@ -1,0 +1,58 @@
+.map{
+    width : 100%;
+}
+.maprouter{
+    position:relative;
+    text-align:right;
+    height:100%;
+}
+
+.gmap_canvas {
+    overflow:hidden;
+    background:none!important;
+    height:100%;
+}
+
+.map { 
+    margin-top : 10px;
+}
+.tracks {
+    position : absolute;
+    margin-top : -100px;
+    align-items : center;
+    justify-content : center;
+    display : flex; 
+    background-color : white; 
+    padding : 0.5rem;
+    border-radius : 10px;
+    margin-left : 263px;
+    font-size : smaller;
+    box-shadow : 5px 10px #888888;
+}
+.tracks p{
+    color : #202020;
+}
+.tracks span {
+    margin-right : 25px;
+}
+.tracks small {
+    color : #808080;
+}
+.tracks img{ 
+    width : 55px;
+    padding-right : 5px;
+}
+.tracks button {
+    background-color : #FC572A;
+    border : none;
+    border-radius : 5px;
+    padding : 10px;
+    width : 200px;  
+    cursor : pointer;
+}
+.tracks button:hover {
+    background-color : white;
+    color : #FC572A;
+    transition : 0.3s ease;
+    border : 1px solid #FC572A;
+}
