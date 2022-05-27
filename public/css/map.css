@@ -11,6 +11,7 @@
     overflow:hidden;
     background:none!important;
     height:100%;
+    color: black !important;
 }
 
 .map { 
@@ -25,9 +26,10 @@
     background-color : white; 
     padding : 0.5rem;
     border-radius : 10px;
-    margin-left : 263px;
+    margin-left : 500px;
     font-size : smaller;
     box-shadow : 5px 10px #888888;
+    z-index: 1000;
 }
 .tracks p{
     color : #202020;
