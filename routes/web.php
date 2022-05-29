@@ -15,4 +15,6 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/connect', [App\Http\Controllers\HomeController::class, 'connect'])->name('connect');
+Route::post('/connect', [App\Http\Controllers\HomeController::class, 'connect'])->name('connect');
+Route::post('/tracking', [App\Http\Controllers\HomeController::class, 'tracking'])->name('tracking');
+Route::get('/map', [App\Http\Controllers\HomeController::class, 'map'])->name('map');
