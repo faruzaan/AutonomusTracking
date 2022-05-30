@@ -37,14 +37,14 @@ class HomeController extends Controller
     {
         if ($request->action == 'connect') {
 
-            $respon = Http::get('http://127.0.0.1:7777/');
-            $respon->body();
+            // $respon = Http::get('http://127.0.0.1:7777/');
+            // $respon->body();
     
-            $data = json_decode($respon, true);
+            // $data = json_decode($respon, true);
             session([
-                'lat' => $data['lat'],
-                'long' => $data['lng'],
-                'timestamp' => $data['Timestamp'],
+                'lat' => '-6.914744',
+                'long' => '107.609810',
+                'timestamp' => '2020-10-9',
             ]); 
 
         } elseif($request->action == 'disconnect') {
