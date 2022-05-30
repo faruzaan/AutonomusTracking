@@ -47,28 +47,63 @@
             </div>
 
             <div class="latlongsec">
-                <div class="latlong">
+                <div>
                     <img src="images/lat-long.png" alt=""></img>
-                    <p> LAT LONG</p>
+                    <p> Latitude, Longitude</p>
                     @if(session('lat'))
-                        <small>{{ session('lat') }}, {{ session('long') }}</small>
+                        <i><small>{{ session('lat') }}, {{ session('long') }}</small></i>
                     @else
-                        <small>Koordinat Tidak Tersedia</small>
+                        <i><small>Koordinat Tidak Tersedia</small></i>
                     @endif
-                </div>
-                <div class="coordinate">
-                    <img src="images/gps-coords.png" alt=""></img>
-                    <p> GPS Coordinates </p>
-                    <small>-018239292</small>
                 </div>
             </div>
 
             <div class="result">
-                <p>Hasil Record Perjalanan</p>
-                <div class="container">
+                <p class="connect">Hasil Log Perjalanan</p>
+                <div class="box">
+                    <img src="images/car-icon.png" alt="" class="car"></img>
+                    <div class="identity">
+                        <p>Nama / Id Vehicle</p>
+                        <small>22 April 2022 </small>
+                    </div>
+                    <a href="">
+                        <img src="images/icon-eye.png" alt="">
+                    </a>
+                </div>
+                <div class="box">
+                    <img src="images/car-icon.png" alt="" class="car"></img>
+                    <div class="identity">
+                        <p>Nama / Id Vehicle</p>
+                        <small>22 April 2022 </small>
+                    </div>
+                    <a href="">
+                        <img src="images/icon-eye.png" alt="">
+                    </a>
+                </div>
+                <div class="box">
+                    <img src="images/car-icon.png" alt="" class="car"></img>
+                    <div class="identity">
+                        <p>Nama / Id Vehicle</p>
+                        <small>22 April 2022 </small>
+                    </div>
+                    <a href="">
+                        <img src="images/icon-eye.png" alt="">
+                    </a>
+                </div>
+                <div class="box">
+                    <img src="images/car-icon.png" alt="" class="car"></img>
+                    <div class="identity">
+                        <p>Nama / Id Vehicle</p>
+                        <small>22 April 2022 </small>
+                    </div>
+                    <a href="">
+                        <img src="images/icon-eye.png" alt="">
+                    </a>
+                </div>
+                {{-- <div class="container">
                     <img src="" alt="recordResult"></img>
                 </div>
-                <button>Simpan Hasil</button>
+                <button>Simpan Hasil</button> --}}
             </div>
         </div>
     </div>
@@ -77,6 +112,9 @@
 
 @section('map')
     <div class="right">
+        <div class = "navbar-mobile">
+            <img src="images/Logo-with-text.png" alt=""style ="width : 200px;"></img>
+        </div>
         <div class="map"> 
             <div id="map"></div>
             {{-- <div class="mapouter">

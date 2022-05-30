@@ -17,6 +17,14 @@
 .map { 
     margin-top : 10px;
 }
+.navbar-mobile{
+    width : 100%; 
+    background-color : #2E3339; 
+    padding : 0.5rem; 
+    display : none; 
+    position : fixed; 
+    z-index : 1001;
+}
 .tracks {
     position : absolute;
     margin-top : -100px;
@@ -26,7 +34,7 @@
     background-color : white; 
     padding : 0.5rem;
     border-radius : 10px;
-    margin-left : 500px;
+    left : 50%;
     font-size : smaller;
     box-shadow : 5px 10px #888888;
     z-index: 1000;
