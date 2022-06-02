@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use App\Models\Trip;
+use App\Models\Record;
 
 class HomeController extends Controller
 {
@@ -28,7 +29,7 @@ class HomeController extends Controller
         return view('home.index');
     }
 
-    public function map()
+    public function map(Request $request)
     {
         return view('home.map');
     }
@@ -68,6 +69,18 @@ class HomeController extends Controller
         }elseif($request->action == 'stop'){
             $request->session()->forget(['tripCode']);
         }
-        return redirect()->route('home'); 
+        // return redirect()->route('home'); 
+    }
+
+    public function record()
+    {
+        // Record::create([
+
+        // ]);
+
+        return response()->json([
+            'lat' => '-6.114744',
+            'lng' => '107.709810',
+        ]);
     }
 }

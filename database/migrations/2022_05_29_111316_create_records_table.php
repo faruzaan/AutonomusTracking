@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('records', function (Blueprint $table) {
             $table->id();
             $table->string('tripCode', 100);
-            $table->string('device_id', 100);
             $table->string('lat', 100);
             $table->string('long', 100);
             $table->timestamps();
