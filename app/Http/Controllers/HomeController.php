@@ -72,15 +72,19 @@ class HomeController extends Controller
         // return redirect()->route('home'); 
     }
 
-    public function record()
+    public function record($re)
     {
         // Record::create([
 
         // ]);
 
+        // $respon = Http::get('http://127.0.0.1:7777/');
+        // $respon->body();
+        // $data = json_decode($respon, true);
+
         return response()->json([
-            'lat' => '-6.114744',
-            'lng' => '107.709810',
+            'lat' => $lat,
+            'lng' => $long,
         ]);
     }
 }
