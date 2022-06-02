@@ -63,16 +63,18 @@
 
             <div class="result">
                 <p class="connect">Hasil Log Perjalanan</p>
-                <div class="box">
-                    <img src="images/car-icon.png" alt="" class="car"></img>
-                    <div class="identity">
-                        <p>Nama / Id Vehicle</p>
-                        <small>22 April 2022 </small>
+                @foreach ($trips as $item)                    
+                    <div class="box">
+                        <img src="images/car-icon.png" alt="" class="car"></img>
+                        <div class="identity">
+                            <p>Nama / Id Vehicle</p>
+                            <small> {{ $item->created_at->format('d F Y h:i:s A') }} </small>
+                        </div>
+                        <a href="">
+                            <img src="images/icon-eye.png" alt="">
+                        </a>
                     </div>
-                    <a href="">
-                        <img src="images/icon-eye.png" alt="">
-                    </a>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>
@@ -152,7 +154,7 @@
             lineCoordinatesPath.setMap(map);
         }
     };
-
+    
     var pnChannel = "raspi-tracker";
 
     var pubnub = new PubNub({
@@ -183,23 +185,22 @@
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyBWDLlrPxQCmqPeo7QcL6t5__Fzx6NO2K4&callback=initialize"></script>
 <script>
     function newPoint() {
+        var data;
         $.ajax({
             type: "GET",
             dataType: "json",
+            async: false,
             url: "{{ route('record') }}",
-            success:function(response_data_json) {
-                record();
+            success:function(res) {
+                data = res;
             }
         });
-    }
-
-    function record(lat, lng) {
-        return {lat:lat, lng:lng};
+        return data;
     }
 
     setInterval(function() {
-        pubnub.publish({channel:pnChannel, message:record()});
-    }, 1000);
+        pubnub.publish({channel:pnChannel, message:newPoint()});
+    }, 5000);
 
     function tracking(param1, param2) {
         $.ajax({

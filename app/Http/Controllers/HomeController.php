@@ -26,12 +26,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home.index');
-    }
-
-    public function map(Request $request)
-    {
-        return view('home.map');
+        $trips = Trip::get();
+        return view('home.index', [
+            'trips' => $trips,
+        ]);
     }
 
     public function connect(Request $request)
@@ -50,7 +48,7 @@ class HomeController extends Controller
 
         } elseif($request->action == 'disconnect') {
 
-            $request->session()->forget(['lat', 'long', 'timestamp']);
+            $request->session()->forget(['lat', 'long', 'timestamp', 'tripCode']);
 
         }
         return redirect()->route('home'); 
@@ -69,22 +67,31 @@ class HomeController extends Controller
         }elseif($request->action == 'stop'){
             $request->session()->forget(['tripCode']);
         }
-        // return redirect()->route('home'); 
     }
 
-    public function record($re)
+    public function record()
     {
-        // Record::create([
-
-        // ]);
-
         // $respon = Http::get('http://127.0.0.1:7777/');
         // $respon->body();
         // $data = json_decode($respon, true);
 
+        $radius = 0.01;
+        $x = session('lat') + rand(10, 100) * $radius;
+        $y = session('long') + rand(10, 100) * $radius;
+
+        if (session('tripCode')) {
+            Record::create([
+                'tripCode' => session('tripCode'),    
+                'lat' => $x,
+                'long' => $y,
+            ]);
+        }
+
         return response()->json([
-            'lat' => $lat,
-            'lng' => $long,
+            'lat' =>  $x,
+            'lng' => $y,
         ]);
+
+        
     }
 }
