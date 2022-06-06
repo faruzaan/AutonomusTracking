@@ -140,8 +140,8 @@
 
     var redraw = function(payload) {
         if(payload.message.lat){
-            lat = payload.message.lat;
-            lng = payload.message.lng;
+            const lat = payload.message.lat;
+            const lng = payload.message.lng;
             map.setCenter({lat:lat, lng:lng, alt:0});
             mark.setPosition({lat:lat, lng:lng, alt:0});
             lineCoords.push(new google.maps.LatLng(lat, lng));
@@ -150,7 +150,21 @@
                 geodesic: true,
                 strokeColor: '#2E10FF'
             });
-    
+            
+            $.ajax({
+                type: "GET",
+                dataType: "json",
+                async: false,
+                url: "{{ route('record') }}",
+                data : {
+                    lat : lat,
+                    lng : lng,
+                },
+                success:function(res) {
+                    console.log(res);
+                }
+            }); 
+
             lineCoordinatesPath.setMap(map);
         }
     };
@@ -184,23 +198,23 @@
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyBWDLlrPxQCmqPeo7QcL6t5__Fzx6NO2K4&callback=initialize"></script>
 <script>
-    function newPoint() {
-        var data;
-        $.ajax({
-            type: "GET",
-            dataType: "json",
-            async: false,
-            url: "{{ route('record') }}",
-            success:function(res) {
-                data = res;
-            }
-        });
-        return data;
-    }
+    // function newPoint() {
+    //     var data;
+    //     $.ajax({
+    //         type: "GET",
+    //         dataType: "json",
+    //         async: false,
+    //         url: "{{ route('record') }}",
+    //         success:function(res) {
+    //             data = res;
+    //         }
+    //     });
+    //     return data;
+    // }
 
-    setInterval(function() {
-        pubnub.publish({channel:pnChannel, message:newPoint()});
-    }, 5000);
+    // setInterval(function() {
+    //     pubnub.publish({channel:pnChannel, message:newPoint()});
+    // }, 5000);
 
     function tracking(param1, param2) {
         $.ajax({
@@ -211,7 +225,7 @@
                 tripCode : param2,
             },
             success: function (data) {
-                console.log('Berhasil');
+                consowhale.log('Berhasil');
             },
             error: function (data) {
                 console.log('Error');

@@ -69,29 +69,19 @@ class HomeController extends Controller
         }
     }
 
-    public function record()
+    public function record(Request $request)
     {
-        // $respon = Http::get('http://127.0.0.1:7777/');
-        // $respon->body();
-        // $data = json_decode($respon, true);
-
-        $radius = 0.01;
-        $x = session('lat') + rand(10, 100) * $radius;
-        $y = session('long') + rand(10, 100) * $radius;
-
         if (session('tripCode')) {
             Record::create([
                 'tripCode' => session('tripCode'),    
-                'lat' => $x,
-                'long' => $y,
+                'lat' => $request->lat,
+                'long' => $request->lng,
             ]);
         }
 
         return response()->json([
-            'lat' =>  $x,
-            'lng' => $y,
-        ]);
-
-        
+            'lat' => $request->lat,
+            'lng' => $request->lng,
+        ]);        
     }
 }
