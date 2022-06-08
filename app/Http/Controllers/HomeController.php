@@ -35,11 +35,6 @@ class HomeController extends Controller
     public function connect(Request $request)
     {
         if ($request->action == 'connect') {
-
-            // $respon = Http::get('http://127.0.0.1:7777/');
-            // $respon->body();
-    
-            // $data = json_decode($respon, true);
             session([
                 'lat' => '-6.914744',
                 'long' => '107.609810',
@@ -83,5 +78,19 @@ class HomeController extends Controller
             'lat' => $request->lat,
             'lng' => $request->lng,
         ]);        
+    }
+
+    public function log(Request $request)
+    {
+        $records = Record::where('tripCode', $request->tripCode)->get();
+        
+        $trips = Trip::get();
+        $trip = Trip::where('tripCode', $request->tripCode)->first();
+        
+        return view('home.log', [
+            'trips' => $trips,
+            'trip' => $trip,
+            'records' => $records,
+        ]);
     }
 }

@@ -62,15 +62,16 @@
             </div>
 
             <div class="result">
-                <p class="connect">Hasil Log Perjalanan</p>
+                <p class="connect">Riwayat Perjalanan</p>
+                <?php $i = '1' ?>
                 @foreach ($trips as $item)                    
                     <div class="box">
                         <img src="images/car-icon.png" alt="" class="car"></img>
                         <div class="identity">
-                            <p>Nama / Id Vehicle</p>
-                            <small> {{ $item->created_at->format('d F Y h:i:s A') }} </small>
+                            <p>Perjalanan {{ $i++ }}</p>
+                            <small>{{ $item->created_at->format('d F Y h:i:s A') }} </small>
                         </div>
-                        <a href="">
+                        <a href="{{ route('log-perjalanan', ['tripCode' => $item->tripCode]) }}">
                             <img src="images/icon-eye.png" alt="">
                         </a>
                     </div>
@@ -116,7 +117,7 @@
     @if(session('lat')) 
         window.lat = {{ session('lat') }};
         window.lng = {{ session('long') }};
-        window.zoom = 12;
+        window.zoom = 16;
     @else    
         window.lat = -2.994494;
         window.lng = 120.195465;
@@ -127,12 +128,19 @@
     var map;
     var mark;
     var lineCoords = [];
+    var image;
     
     var initialize = function() {
         map  = new google.maps.Map(document.getElementById('map-canvas'), {center:{lat:lat,lng:lng},zoom:zoom});
         
         @if(session('lat')) 
-            mark = new google.maps.Marker({position:{lat:lat, lng:lng}, map:map});
+            image = {
+                url : '<?= asset("images/ant-design_car-filled.png") ?>',
+                scaledSize: new google.maps.Size(30, 30),
+                origin: new google.maps.Point(0,0),
+                anchor: new google.maps.Point(0, 0) 
+            } 
+            mark = new google.maps.Marker({position:{lat:lat, lng:lng}, map:map, icon:image});
         @endif
     };
 
@@ -225,7 +233,7 @@
                 tripCode : param2,
             },
             success: function (data) {
-                consowhale.log('Berhasil');
+                console.log('Berhasil');
             },
             error: function (data) {
                 console.log('Error');

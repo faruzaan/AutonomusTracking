@@ -18,4 +18,4 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 Route::post('/connect', [App\Http\Controllers\HomeController::class, 'connect'])->name('connect');
 Route::get('/tracking', [App\Http\Controllers\HomeController::class, 'tracking'])->name('tracking');
 Route::get('/record', [App\Http\Controllers\HomeController::class, 'record'])->name('record');
-// Route::get('/map', [App\Http\Controllers\HomeController::class, 'map'])->name('map');
+Route::get('/log-perjalanan', [App\Http\Controllers\HomeController::class, 'log'])->name('log-perjalanan');
