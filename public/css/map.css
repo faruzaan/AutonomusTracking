@@ -56,10 +56,36 @@
     padding : 10px;
     width : 200px;  
     cursor : pointer;
+    transition : 0.3s ease;
+}
+.tracks button i{
+    margin-right : 10px;
+    font-size : 20px;
 }
 .tracks button:hover {
-    background-color : white;
-    color : #FC572A;
+    background-color : #FF6A42;
     transition : 0.3s ease;
-    border : 1px solid #FC572A;
+    /* border : 1px solid #FC572A; */
+}
+.loader{
+    display : grid;
+    place-content : center;
+    transition : 0.3s ease;
+}
+.loader .circle {
+    pointer-events : none;
+    width : 14px;
+    height : 14px;
+    border-radius : 50%;
+    border :3px solid transparent;
+    border-top-color : #fff;
+    animation : an1 1s ease infinite;
+}
+@keyframes an1{
+    0% {
+        transform : rotate(0turn);
+    }
+    100%{
+        transform : rotate(1turn);
+    }
 }

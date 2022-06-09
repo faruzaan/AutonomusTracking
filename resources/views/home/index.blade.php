@@ -31,16 +31,16 @@
                     @if(session('lat'))
                     <form action="{{ route('connect', ['action' => 'disconnect']) }}" method="post">
                         @csrf
-                        <button class="connector">
-                            <img src="images/icon-connect.png" alt=""></img>
+                        <button id="btndisconnect"class="connector blue">
+                            <img id ="disconnector"src="images/connected.png" alt=""></img>
                             <p>Disconnect</p>
                         </button>
                     </form>
                     @else
                     <form action="{{ route('connect', ['action' => 'connect']) }}" method="post">
                         @csrf
-                        <button class="connector">
-                            <img src="images/icon-connect.png" alt=""></img>
+                        <button id="btnconnect"class="connector">
+                            <img id ="connected"src="images/icon-connect2.png" alt=""></img>
                             <p>Connect</p>
                         </button>
                     </form>
@@ -98,8 +98,8 @@
                 <div class="tracks">
                     <img src="images/black-car.png"alt=""></img>
                     <span>
-                        <p>Nama / Id Vehicle</p>
-                        <small>Tidak Tersambung Dengan GPS</small>
+                        <p>D 400 CC</p>
+                        <small>Tersambung Dengan GPS</small>
                     </span>
                     <?php
                         $str=rand();
@@ -114,16 +114,37 @@
 
 @section('js')
 <script>
+    // tombol connect
+    var iconConnect = document.querySelector("#connected");
+    var buttonConnect = document.querySelector("#btnconnect");
+    var iconDisconnect = document.querySelector("#disconnector");
+    var buttonDisconnect = document.querySelector("#btndisconnect");
+
+    
+    
     @if(session('lat')) 
         window.lat = {{ session('lat') }};
         window.lng = {{ session('long') }};
         window.zoom = 16;
+        buttonDisconnect.addEventListener('mouseover',function(){
+        iconDisconnect.setAttribute("src","images/icon-connect2.png");
+        });
+        buttonDisconnect.addEventListener('mouseout',function(){
+        iconDisconnect.setAttribute("src","images/connected.png");
+        });
     @else    
         window.lat = -2.994494;
         window.lng = 120.195465;
         window.zoom = 4;
+        buttonConnect.addEventListener('mouseover',function(){
+        iconConnect.setAttribute("src","images/connected.png");
+        });
+        buttonConnect.addEventListener('mouseout',function(){
+        iconConnect.setAttribute("src","images/icon-connect2.png");
+        });
     @endif
 
+    
 
     var map;
     var mark;
@@ -176,7 +197,7 @@
             lineCoordinatesPath.setMap(map);
         }
     };
-    
+
     var pnChannel = "raspi-tracker";
 
     var pubnub = new PubNub({
@@ -191,7 +212,11 @@
             pubnub.addListener({message:redraw});
             document.getElementById("action").classList.add('btn-danger');
             document.getElementById("action").classList.remove('btn-success');
-            document.getElementById("action").textContent = 'Stop Tracking';
+            // document.getElementById("action").textContent = 'Stop Tracking';
+            this.innerHTML = "<div class='loader'><div class='circle'></div></div>";
+            setTimeout(() => {
+                this.innerHTML = "<i class='fa-solid fa-circle-stop'></i>Stop Tracking";
+            }, 1500);
             tracking('mulai', '{{ $result }}');
         }
         else{

@@ -14,7 +14,14 @@
         <div class="inside">
             <div class="logo">
                 <img src="images/Logo-with-text.png" alt=""></img>
-                <br><a href="{{route('home')}}">Kembali</a>
+
+                {{-- <br><a href="{{route('home')}}">Kembali</a> --}}
+            </div>
+
+            <div class="btn-back">
+                <a href="{{ route('home') }}">
+                <button class="btn-log"> << Back To Tracking </button>
+                </a>
             </div>
 
             <div class="result">

@@ -49,11 +49,19 @@
     text-align :center;
 }
 .box .connector:hover {
-    background-color : #808099;
+    background-color : #0098BA;
     transition : 0.3s ease;
+}
+.box .blue{
+    background-color : #0098BA;
+}
+.box .blue:hover{
+    background-color : #808080;
 }
 .connector img{
     margin-bottom : 6px;
+    transition : 0.3s ease;
+    width  : 30px
 }
 .connector p {
     font-size : 10px;
@@ -93,6 +101,23 @@
 }
 .result .box .identity{
     margin-right : 50px;
+}
+.btn-back{
+    padding : 1rem;
+}
+.btn-log{
+    background-color : #0f4c75;
+    border : none;
+    border-radius : 5px;
+    padding : 10px;
+    width : 200px;  
+    cursor : pointer;
+    transition : 0.3s ease;
+}
+.btn-log:hover {
+    background-color : white;
+    color : #0f4c75;
+    
 }
 /* .container {
     margin-top : 5px;
